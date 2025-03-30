@@ -1,5 +1,6 @@
 package org.example.exceptionhomework003.service.impl;
 
+import org.example.exceptionhomework003.model.dto.request.AttendeeRequest;
 import org.example.exceptionhomework003.model.entity.AttendeeModel;
 import org.example.exceptionhomework003.repository.AttendeeRepository;
 import org.example.exceptionhomework003.service.AttendeeService;
@@ -23,5 +24,15 @@ public class AttendeeServiceImpl implements AttendeeService {
     @Override
     public AttendeeModel getAttendeeById(Integer attendeeId) {
         return attendeeRepository.getAttendeeById(attendeeId);
+    }
+
+    @Override
+    public AttendeeModel addAttendee(AttendeeRequest attendeeRequest) {
+            return attendeeRepository.addAttendee(attendeeRequest);
+    }
+
+    @Override
+    public AttendeeModel updateAttendeeById(Integer attendeeId, AttendeeRequest attendeeRequest) {
+            return attendeeRepository.updateAttendeeById(attendeeId,attendeeRequest);
     }
 }
