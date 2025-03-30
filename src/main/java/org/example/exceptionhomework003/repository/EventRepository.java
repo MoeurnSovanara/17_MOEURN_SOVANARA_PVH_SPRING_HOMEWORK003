@@ -21,7 +21,9 @@ public interface EventRepository {
     @Results(id = "eventMapper",value = {
             @Result(property = "eventId",column = "event_id"),
             @Result(property = "eventName",column = "event_name"),
-            @Result(property = "eventDate",column = "event_date",one=@One(select = "getVenueByEventId")),
+
+            @Result(property = "eventDate",column = "event_date"),
+            @Result(property = "venue",column = "venue_id",one=@One(select = "getVenueByEventId"))
     })
     List<EventModel> getAllEvents();
 }
