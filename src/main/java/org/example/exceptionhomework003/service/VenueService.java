@@ -14,4 +14,6 @@ public interface VenueService {
     VenueModel addVenue(VenueRequest venueRequest);
 
     VenueModel updateVenueById(Integer venueId, VenueRequest venueRequest);
+
+    VenueModel deleteVenueById(Integer venueId);
 }

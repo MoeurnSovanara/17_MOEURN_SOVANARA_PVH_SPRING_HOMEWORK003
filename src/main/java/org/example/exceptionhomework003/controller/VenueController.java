@@ -68,4 +68,17 @@ public class VenueController {
                 .build();
         return ResponseEntity.ok(apiResponse);
     }
+
+
+    @DeleteMapping("/{venue-id}")
+    public ResponseEntity<ApiResponse<VenueModel>> deleteVenueById(@PathVariable("venue-id") Integer venueId) {
+        ApiResponse<VenueModel> apiResponse= ApiResponse.<VenueModel>builder()
+                .success(true)
+                .message("Update a venue by id successfully")
+                .status(HttpStatus.OK)
+                .payload(venueService.deleteVenueById(venueId))
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
 }

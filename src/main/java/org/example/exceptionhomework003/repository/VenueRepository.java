@@ -39,4 +39,12 @@ public interface VenueRepository {
     """)
     @ResultMap("venueMapper")
     VenueModel updateVenueById(Integer venueId,@Param("request")VenueRequest venueRequest);
+
+
+
+    @Select("""
+       Delete FROM venues WHERE venue_id = #{venueId} RETURNING *;
+    """)
+    @ResultMap("venueMapper")
+    VenueModel deleteVenueById(Integer venueId);
 }
