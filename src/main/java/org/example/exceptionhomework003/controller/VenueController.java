@@ -55,4 +55,17 @@ public class VenueController {
                 .build();
         return ResponseEntity.ok(apiResponse);
     }
+
+
+    @PutMapping("/{venue-id}")
+    public ResponseEntity<ApiResponse<VenueModel>> updateVenueById(@PathVariable("venue-id") Integer venueId, @RequestBody VenueRequest venueRequest) {
+        ApiResponse<VenueModel> apiResponse= ApiResponse.<VenueModel>builder()
+                .success(true)
+                .message("Update a venue by id successfully")
+                .status(HttpStatus.OK)
+                .payload(venueService.updateVenueById(venueId,venueRequest))
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
 }

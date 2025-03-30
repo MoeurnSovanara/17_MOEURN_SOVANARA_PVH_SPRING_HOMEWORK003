@@ -30,4 +30,9 @@ public class VenueServoiceimpl implements VenueService {
     public VenueModel addVenue(VenueRequest venueRequest) {
         return venueRepository.addVenue(venueRequest);
     }
+
+    @Override
+    public VenueModel updateVenueById(Integer venueId, VenueRequest venueRequest) {
+        return venueRepository.updateVenueById(venueId,venueRequest);
+    }
 }

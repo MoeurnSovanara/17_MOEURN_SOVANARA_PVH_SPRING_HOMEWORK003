@@ -12,4 +12,6 @@ public interface VenueService {
     VenueModel getVenueById(Integer venueId);
 
     VenueModel addVenue(VenueRequest venueRequest);
+
+    VenueModel updateVenueById(Integer venueId, VenueRequest venueRequest);
 }

@@ -32,4 +32,11 @@ public interface VenueRepository {
     """)
     @ResultMap("venueMapper")
     VenueModel addVenue(@Param("request") VenueRequest venueRequest);
+
+
+    @Select("""
+        UPDATE venues SET venue_name= #{request.venueName}, location = #{request.location} WHERE venue_id = #{venueId} RETURNING *;
+    """)
+    @ResultMap("venueMapper")
+    VenueModel updateVenueById(Integer venueId,@Param("request")VenueRequest venueRequest);
 }
