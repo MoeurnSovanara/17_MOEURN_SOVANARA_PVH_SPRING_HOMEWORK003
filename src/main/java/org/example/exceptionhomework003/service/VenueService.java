@@ -7,4 +7,6 @@ import java.util.List;
 public interface VenueService {
 
     List<VenueModel> getAllVenues();
+
+    VenueModel getVenueById(Integer venueId);
 }

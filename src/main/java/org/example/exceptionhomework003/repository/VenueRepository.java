@@ -15,4 +15,12 @@ public interface VenueRepository {
             @Result(property = "venueName",column = "venue_name")
     })
     List<VenueModel> getAllVenues();
+
+
+    @Select("""
+        SELECT * FROM venues
+        WHERE venue_id = #{venueId};
+    """)
+    @ResultMap("venueMapper")
+    VenueModel getVenueById(Integer venueId);
 }
