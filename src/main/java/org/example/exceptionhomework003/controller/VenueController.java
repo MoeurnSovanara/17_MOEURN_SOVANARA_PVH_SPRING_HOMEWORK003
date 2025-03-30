@@ -1,13 +1,11 @@
 package org.example.exceptionhomework003.controller;
+import org.example.exceptionhomework003.model.dto.request.VenueRequest;
 import org.example.exceptionhomework003.model.dto.response.ApiResponse;
 import org.example.exceptionhomework003.model.entity.VenueModel;
 import org.example.exceptionhomework003.service.VenueService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,9 +35,22 @@ public class VenueController {
     public ResponseEntity<ApiResponse<VenueModel>> getVenueById(@PathVariable("venue-id") Integer venueId) {
         ApiResponse<VenueModel> apiResponse= ApiResponse.<VenueModel>builder()
                 .success(true)
-                .message("Get all Venue successfully")
+                .message("Get venue by id successfully")
                 .status(HttpStatus.OK)
                 .payload(venueService.getVenueById(venueId))
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
+
+
+    @PostMapping
+    public ResponseEntity<ApiResponse<VenueModel>> addVenue(@RequestBody VenueRequest venueRequest) {
+        ApiResponse<VenueModel> apiResponse= ApiResponse.<VenueModel>builder()
+                .success(true)
+                .message("Add a venue successfully")
+                .status(HttpStatus.OK)
+                .payload(venueService.addVenue(venueRequest))
                 .timestamp(LocalDateTime.now())
                 .build();
         return ResponseEntity.ok(apiResponse);

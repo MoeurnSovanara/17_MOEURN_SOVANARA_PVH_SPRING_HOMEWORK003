@@ -1,5 +1,6 @@
 package org.example.exceptionhomework003.service.impl;
 
+import org.example.exceptionhomework003.model.dto.request.VenueRequest;
 import org.example.exceptionhomework003.model.entity.VenueModel;
 import org.example.exceptionhomework003.repository.VenueRepository;
 import org.example.exceptionhomework003.service.VenueService;
@@ -23,5 +24,10 @@ public class VenueServoiceimpl implements VenueService {
     @Override
     public VenueModel getVenueById(Integer venueId) {
         return venueRepository.getVenueById(venueId);
+    }
+
+    @Override
+    public VenueModel addVenue(VenueRequest venueRequest) {
+        return venueRepository.addVenue(venueRequest);
     }
 }

@@ -1,6 +1,7 @@
 package org.example.exceptionhomework003.repository;
 
 import org.apache.ibatis.annotations.*;
+import org.example.exceptionhomework003.model.dto.request.VenueRequest;
 import org.example.exceptionhomework003.model.entity.VenueModel;
 
 import java.util.List;
@@ -23,4 +24,12 @@ public interface VenueRepository {
     """)
     @ResultMap("venueMapper")
     VenueModel getVenueById(Integer venueId);
+
+
+    @Select("""
+        INSERT INTO venues (venue_name, location) VALUES (#{request.venueName}, #{request.location})
+        RETURNING *
+    """)
+    @ResultMap("venueMapper")
+    VenueModel addVenue(@Param("request") VenueRequest venueRequest);
 }
