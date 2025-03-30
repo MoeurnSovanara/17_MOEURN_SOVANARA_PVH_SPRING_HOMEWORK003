@@ -35,4 +35,9 @@ public class AttendeeServiceImpl implements AttendeeService {
     public AttendeeModel updateAttendeeById(Integer attendeeId, AttendeeRequest attendeeRequest) {
             return attendeeRepository.updateAttendeeById(attendeeId,attendeeRequest);
     }
+
+    @Override
+    public AttendeeModel deleteAttendeeById(Integer attendeeId) {
+        return attendeeRepository.deleteAttendeeById(attendeeId);
+    }
 }

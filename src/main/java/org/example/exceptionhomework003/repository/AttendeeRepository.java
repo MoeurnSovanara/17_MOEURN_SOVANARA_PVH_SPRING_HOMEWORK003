@@ -39,4 +39,11 @@ public interface AttendeeRepository {
     """)
     @ResultMap("attendeeMapper")
     AttendeeModel updateAttendeeById(Integer attendeeId,@Param("request") AttendeeRequest attendeeRequest);
+
+
+    @Select("""
+    DELETE FROM attendees WHERE attendee_id = #{attendeeId} RETURNING *;
+    """)
+    @ResultMap("attendeeMapper")
+    AttendeeModel deleteAttendeeById(Integer attendeeId);
 }

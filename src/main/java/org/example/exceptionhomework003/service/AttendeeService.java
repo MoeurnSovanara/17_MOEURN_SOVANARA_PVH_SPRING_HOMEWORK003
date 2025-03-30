@@ -15,4 +15,6 @@ public interface AttendeeService {
     AttendeeModel addAttendee(AttendeeRequest attendeeRequest);
 
     AttendeeModel updateAttendeeById(Integer attendeeId, AttendeeRequest attendeeRequest);
+
+    AttendeeModel deleteAttendeeById(Integer attendeeId);
 }

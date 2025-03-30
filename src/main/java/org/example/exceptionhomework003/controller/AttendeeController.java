@@ -72,4 +72,16 @@ public class AttendeeController {
         return ResponseEntity.ok(apiResponse);
     }
 
+
+    @DeleteMapping("/{attendee-id}")
+    public ResponseEntity<ApiResponse<AttendeeModel>> deleteAttendeeById(@PathVariable("attendee-id") Integer attendeeId) {
+        ApiResponse<AttendeeModel> apiResponse= ApiResponse.<AttendeeModel>builder()
+                .success(true)
+                .message("Delete by id successfully")
+                .status(HttpStatus.OK)
+                .payload(attendeeService.deleteAttendeeById(attendeeId))
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
 }
