@@ -1,9 +1,6 @@
 package org.example.exceptionhomework003.repository;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.example.exceptionhomework003.model.entity.AttendeeModel;
 
 import java.util.List;
@@ -20,4 +17,11 @@ public interface AttendeeRepository {
             @Result(property = "attendeeName",column = "attendee_name")
     })
     List<AttendeeModel> getAllAttendees();
+
+
+    @Select("""
+        SELECT * FROM attendees WHERE attendee_id = #{attendeeId};
+    """)
+    @ResultMap("attendeeMapper")
+    AttendeeModel getAttendeeById(Integer attendeeId);
 }

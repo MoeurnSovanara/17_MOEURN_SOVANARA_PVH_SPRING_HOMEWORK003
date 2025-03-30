@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface AttendeeService {
     List<AttendeeModel> getAllAttendees();
+
+    AttendeeModel getAttendeeById(Integer attendeeId);
 }

@@ -8,6 +8,7 @@ import org.example.exceptionhomework003.service.AttendeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,5 +37,19 @@ public class AttendeeController {
                 .build();
         return ResponseEntity.ok(apiResponse);
     }
+
+    @GetMapping("/{attendee-id}")
+    public ResponseEntity<ApiResponse<AttendeeModel>> getAttendeeById(@PathVariable("attendee-id") Integer attendeeId) {
+        ApiResponse<AttendeeModel> apiResponse= ApiResponse.<AttendeeModel>builder()
+                .success(true)
+                .message(" Get Attendee by Id successfully")
+                .status(HttpStatus.OK)
+                .payload(attendeeService.getAttendeeById(attendeeId))
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.ok(apiResponse);
+    }
+
+
 
 }
