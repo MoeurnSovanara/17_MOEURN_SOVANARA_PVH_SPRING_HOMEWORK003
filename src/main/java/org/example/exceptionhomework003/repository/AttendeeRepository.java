@@ -3,6 +3,7 @@ package org.example.exceptionhomework003.repository;
 import org.apache.ibatis.annotations.*;
 import org.example.exceptionhomework003.model.dto.request.AttendeeRequest;
 import org.example.exceptionhomework003.model.entity.AttendeeModel;
+import org.example.exceptionhomework003.model.entity.EventModel;
 
 import java.util.List;
 
@@ -46,4 +47,31 @@ public interface AttendeeRepository {
     """)
     @ResultMap("attendeeMapper")
     AttendeeModel deleteAttendeeById(Integer attendeeId);
+
+
+    @Select("""
+      SELECT attendee_id FROM attendees WHERE attendee_id = #{attendeeId};
+    """)
+    List<AttendeeModel> getAttendeeByAttendeeId(Integer attendeeId);
+
+    @Select("""
+      SELECT a.* FROM attendees a INNER JOIN event_attendee ea on a.attendee_id = ea.attendee_id
+      WHERE ea.event_id = #{attendeeId};
+    """)
+    @ResultMap("attendeeMapper")
+    List<AttendeeModel> getAttendeeByEventId(Integer attendeeId);
+
+
+    @Select("""
+        INSERT INTO event_attendee(event_id, attendee_id) VALUES (#{eventId}, #{attendeeId});
+    """)
+    void addEventAttendee(Integer eventId, Integer attendeeId);
+
+
+    @Select("""
+        DELETE FROM event_attendee WHERE event_id = #{eventId};
+    """)
+    void deleteEventAttendee(Integer eventId);
 }
+
+
