@@ -12,13 +12,15 @@ import java.util.List;
 public interface AttendeeRepository {
 
     @Select("""
-      SELECT * FROM attendees;
+      SELECT * FROM attendees 
+      OFFSET #{page}
+      LIMIT #{size}
     """)
     @Results(id = "attendeeMapper", value = {
             @Result(property = "attendeeId",column = "attendee_id"),
             @Result(property = "attendeeName",column = "attendee_name")
     })
-    List<AttendeeModel> getAllAttendees();
+    List<AttendeeModel> getAllAttendees(Integer page, Integer size);
 
 
     @Select("""

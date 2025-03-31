@@ -23,12 +23,12 @@ public class EventController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<EventModel>>> getAllEvents() {
+    public ResponseEntity<ApiResponse<List<EventModel>>> getAllEvents(@RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "10")Integer size) {
         ApiResponse<List<EventModel>> apiResponse= ApiResponse.<List<EventModel>>builder()
                 .success(true)
                 .message("get Event successfully")
                 .status(HttpStatus.OK)
-                .payload(eventService.getAllEvents())
+                .payload(eventService.getAllEvents(page,size))
                 .timestamp(LocalDateTime.now())
                 .build();
         return ResponseEntity.ok(apiResponse);

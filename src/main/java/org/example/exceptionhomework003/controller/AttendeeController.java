@@ -6,6 +6,7 @@ import org.example.exceptionhomework003.model.dto.response.ApiResponse;
 import org.example.exceptionhomework003.model.entity.AttendeeModel;
 import org.example.exceptionhomework003.model.entity.VenueModel;
 import org.example.exceptionhomework003.service.AttendeeService;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +26,12 @@ public class AttendeeController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<AttendeeModel>>> getAllAttendees() {
+    public ResponseEntity<ApiResponse<List<AttendeeModel>>> getAllAttendees(@RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "10") Integer size) {
         ApiResponse<List<AttendeeModel>> apiResponse= ApiResponse.<List<AttendeeModel>>builder()
                 .success(true)
                 .message(" Get all Attendee successfully")
                 .status(HttpStatus.OK)
-                .payload(attendeeService.getAllAttendees())
+                .payload(attendeeService.getAllAttendees(page,size))
                 .timestamp(LocalDateTime.now())
                 .build();
         return ResponseEntity.ok(apiResponse);

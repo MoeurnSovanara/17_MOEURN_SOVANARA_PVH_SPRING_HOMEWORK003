@@ -19,12 +19,12 @@ public class VenueController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<VenueModel>>>  getAllVenues() {
+    public ResponseEntity<ApiResponse<List<VenueModel>>>  getAllVenues(@RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "10")Integer size) {
         ApiResponse<List<VenueModel>> apiResponse= ApiResponse.<List<VenueModel>>builder()
                 .success(true)
                 .message("Get all Venue successfully")
                 .status(HttpStatus.OK)
-                .payload(venueService.getAllVenues())
+                .payload(venueService.getAllVenues(page,size))
                 .timestamp(LocalDateTime.now())
                 .build();
         return ResponseEntity.ok(apiResponse);

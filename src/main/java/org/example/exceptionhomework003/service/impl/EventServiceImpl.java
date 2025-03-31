@@ -22,8 +22,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventModel> getAllEvents() {
-        return eventRepository.getAllEvents();
+    public List<EventModel> getAllEvents(Integer page, Integer size) {
+        return eventRepository.getAllEvents(page,size);
     }
 
     @Override

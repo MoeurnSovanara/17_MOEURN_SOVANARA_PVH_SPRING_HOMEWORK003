@@ -9,7 +9,7 @@ import org.example.exceptionhomework003.model.entity.EventModel;
 import java.util.List;
 
 public interface EventService {
-    List<EventModel> getAllEvents();
+    List<EventModel> getAllEvents(Integer page, Integer size);
 
     EventModel getEventById(Integer eventId);
 

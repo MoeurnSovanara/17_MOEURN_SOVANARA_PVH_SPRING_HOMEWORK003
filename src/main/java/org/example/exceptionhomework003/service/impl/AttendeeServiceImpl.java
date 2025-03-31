@@ -17,8 +17,8 @@ public class AttendeeServiceImpl implements AttendeeService {
     }
 
     @Override
-    public List<AttendeeModel> getAllAttendees() {
-        return attendeeRepository.getAllAttendees();
+    public List<AttendeeModel> getAllAttendees(Integer page, Integer size) {
+        return attendeeRepository.getAllAttendees(page,size);
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface AttendeeService {
-    List<AttendeeModel> getAllAttendees();
+    List<AttendeeModel> getAllAttendees(Integer page,Integer size);
 
     AttendeeModel getAttendeeById(Integer attendeeId);
 
