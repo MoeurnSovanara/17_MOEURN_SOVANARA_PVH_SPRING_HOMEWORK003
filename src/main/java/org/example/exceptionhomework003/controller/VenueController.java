@@ -1,6 +1,7 @@
 package org.example.exceptionhomework003.controller;
 import org.example.exceptionhomework003.model.dto.request.VenueRequest;
 import org.example.exceptionhomework003.model.dto.response.ApiResponse;
+import org.example.exceptionhomework003.model.dto.response.VenueDTO;
 import org.example.exceptionhomework003.model.entity.VenueModel;
 import org.example.exceptionhomework003.service.VenueService;
 import org.springframework.http.HttpStatus;
@@ -45,8 +46,8 @@ public class VenueController {
 
 
     @PostMapping
-    public ResponseEntity<ApiResponse<VenueModel>> addVenue(@RequestBody VenueRequest venueRequest) {
-        ApiResponse<VenueModel> apiResponse= ApiResponse.<VenueModel>builder()
+    public ResponseEntity<ApiResponse<VenueDTO>> addVenue(@RequestBody VenueRequest venueRequest) {
+        ApiResponse<VenueDTO> apiResponse= ApiResponse.<VenueDTO>builder()
                 .success(true)
                 .message("Add a venue successfully")
                 .status(HttpStatus.OK)

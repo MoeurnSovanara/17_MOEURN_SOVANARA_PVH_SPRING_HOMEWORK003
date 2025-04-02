@@ -1,5 +1,6 @@
 package org.example.exceptionhomework003.service.impl;
 
+import org.example.exceptionhomework003.exception.NotFoundException;
 import org.example.exceptionhomework003.model.dto.request.AttendeeRequest;
 import org.example.exceptionhomework003.model.entity.AttendeeModel;
 import org.example.exceptionhomework003.repository.AttendeeRepository;
@@ -23,6 +24,10 @@ public class AttendeeServiceImpl implements AttendeeService {
 
     @Override
     public AttendeeModel getAttendeeById(Integer attendeeId) {
+
+       if (attendeeRepository.getAttendeeById(attendeeId) ==  null){
+         throw new NotFoundException("Attendee"+ attendeeId +" not found");
+       }
         return attendeeRepository.getAttendeeById(attendeeId);
     }
 
